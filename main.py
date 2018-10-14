@@ -13,6 +13,7 @@
 # limitations under the License.
 
 # [START gae_python37_app]
+import os
 from flask import Flask, render_template, request
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 
@@ -32,14 +33,14 @@ configure_uploads(app, photos)
 def get_label(image_url):
 	model = app_c.models.get('doggospotto')
 	#image = ClImage(url=image_url)
-	full_name = '/static/img/' + image_url
-	image = ClImage(file_obj=open(full_name, 'rb'))
+	full_name = os.path.join(os.path.dirname(__file__), 'static', 'img', image_url)
+	image = ClImage(file_obj=open(full_name, 'rb'))	
 	response_data = model.predict([image])
 
 	print("You have uploaded a: ")
 	return response_data['outputs'][0]['data']['concepts'][0]['name']
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def hello():
 		return render_template('index.html')
 
