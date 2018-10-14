@@ -20,6 +20,7 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 from clarifai.rest import ClarifaiApp, Concept
 from clarifai.rest import Image as ClImage
 
+#clarigaiApp key given in account
 app_c = ClarifaiApp(api_key='d4e760d1e96940fb9a371f79f3249bc5')
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
