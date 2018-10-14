@@ -24,13 +24,11 @@ print(output)
 # and set its value to your API key.
 # In this case, the construction of the object requires no `api_key` argument.
 
-# app = ClarifaiApp()
-
-# print('n'.join(get_relevant_tags('https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225627/Pomeranian-On-White-01.jpg')))
 
 # def get_relevant_tags(image_url):
 #     response_data = app.tag_urls([image_url])
  
+#https://twilioinc.wpengine.com/2017/06/image-recognition-in-python-with-the-clarifai-api-and-twilio-mms.html
 #     tag_urls = []
 #     for concept in response_data['outputs'][0]['data']['concepts']:
 #         tag_urls.append(concept['name'])
