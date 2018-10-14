@@ -22,9 +22,9 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def hello(chart):
     """Return a friendly HTTP greeting."""
-    return render_template('index.html')
+    return render_template('index.html', image = chart)
 
 
 if __name__ == '__main__':
