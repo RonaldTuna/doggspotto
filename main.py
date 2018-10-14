@@ -13,14 +13,14 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-import os
+# import os
 from flask import Flask, render_template, request
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 
-from clarifai.rest import ClarifaiApp, Concept
-from clarifai.rest import Image as ClImage
+# from clarifai.rest import ClarifaiApp, Concept
+# from clarifai.rest import Image as ClImage
 
-app_c = ClarifaiApp(api_key='d4e760d1e96940fb9a371f79f3249bc5')
+# app_c = ClarifaiApp(api_key='d4e760d1e96940fb9a371f79f3249bc5')
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -30,29 +30,29 @@ photos = UploadSet('photos', IMAGES)
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/img'
 configure_uploads(app, photos)
 
-def get_label(image_url):
-	model = app_c.models.get('doggospotto')
-	#image = ClImage(url=image_url)
-	full_name = os.path.join(os.path.dirname(__file__), 'static', 'img', image_url)
-	image = ClImage(file_obj=open(full_name, 'rb'))	
-	response_data = model.predict([image])
-
-	print("You have uploaded a: ")
-	return response_data['outputs'][0]['data']['concepts'][0]['name']
+#def get_label(image_url):
+#	model = app_c.models.get('doggospotto')
+#	#image = ClImage(url=image_url)
+#	full_name = os.path.join(os.path.dirname(__file__), 'static', 'img', image_url)
+#	image = ClImage(file_obj=open(full_name, 'rb'))	
+#	response_data = model.predict([image])
+#
+#	print("You have uploaded a: ")
+#	return response_data['outputs'][0]['data']['concepts'][0]['name']
 
 @app.route('/')
 def hello():
 		return render_template('index.html')
 
 @app.route('/uploaded', methods = ['GET', 'POST'])
-def uploaded():	
-	if request.method == 'POST' and 'photo' in request.files:
-		filename = photos.save(request.files['photo'])
-		print("waiting for clarifai")
-		output = get_label(filename)
-		# return filename
-
-		return render_template('photo_uploaded.html', img = filename, category = output)
+#def uploaded():	
+#	if request.method == 'POST' and 'photo' in request.files:
+#		filename = photos.save(request.files['photo'])
+#		print("waiting for clarifai")
+#		output = get_label(filename)
+#		# return filename
+#
+#		return render_template('photo_uploaded.html', img = filename, category = output)
 
 #{{ url_for('hello') }}
 if __name__ == '__main__':
